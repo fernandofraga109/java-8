@@ -6,7 +6,7 @@ import com.fernandofraga.data.StudentDataBase;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CunsumeExample {
+public class ConsumerExample {
 
     static Consumer<Student> consumer1 = (s) -> System.out.println(s.getName());
     static Consumer<Student> consumer2 = (s) -> System.out.println(s.getActivities());
@@ -15,18 +15,24 @@ public class CunsumeExample {
     public static void main(String[] args) {
 
         Consumer<String> c = (s) -> System.out.println(s.toUpperCase());
+        //c.accept("java 8");
 
-        c.accept("java 8");
+        Consumer<Student> conS = (st) -> {st.setName("Fernando");  System.out.println(st);};
+        conS.accept(StudentDataBase.getAllStudents().get(0));
+
+
+
 
         //printName();
-        //printNameActivities();
-        printNameActivitiesConditional();
+
+        printNameActivities();
+        //printNameActivitiesConditional();
     }
 
     public static void printName() {
 
         List<Student> studentList = StudentDataBase.getAllStudents();
-        studentList.forEach(consumer3);
+        studentList.forEach(consumer1);
     }
 
     public static void printNameActivities() {
